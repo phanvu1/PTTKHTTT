@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 30, 2025 lúc 08:27 PM
+-- Thời gian đã tạo: Th5 01, 2025 lúc 01:27 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -24,18 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `ctkm`
---
-
-CREATE TABLE `ctkm` (
-  `makm` int(11) NOT NULL,
-  `masach` int(11) NOT NULL,
-  `tilekm` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `ctphieunhap`
 --
 
@@ -51,21 +39,21 @@ CREATE TABLE `ctphieunhap` (
 --
 
 INSERT INTO `ctphieunhap` (`maphieunhap`, `masach`, `soluong`, `dongia`) VALUES
-(1, '10', 100, 210000),
-(2, '18', 50, 130000),
-(2, '8', 50, 170000),
-(3, '14', 100, 160000),
-(3, '15', 100, 130000),
-(3, '16', 100, 150000),
-(4, '23', 100, 190000),
-(4, '24', 100, 160000),
-(5, '18', 100, 180000),
-(5, '19', 100, 140000),
-(6, '1', 100, 150000),
-(6, '2', 100, 250000),
-(7, '12', 100, 140000),
-(7, '13', 100, 190000),
-(7, '14', 100, 160000);
+(1, 'S10', 100, 210000),
+(2, 'S18', 50, 130000),
+(2, 'S8', 50, 170000),
+(3, 'S14', 100, 160000),
+(3, 'S15', 100, 130000),
+(3, 'S16', 100, 150000),
+(4, 'S23', 100, 190000),
+(4, 'S24', 100, 160000),
+(5, 'S18', 100, 180000),
+(5, 'S19', 100, 140000),
+(6, 'S1', 100, 150000),
+(6, 'S2', 100, 250000),
+(7, 'S12', 100, 140000),
+(7, 'S13', 100, 190000),
+(7, 'S14', 100, 160000);
 
 -- --------------------------------------------------------
 
@@ -200,7 +188,9 @@ INSERT INTO `ctphieuxuat` (`maphieuxuat`, `masach`, `soluong`, `dongia`) VALUES
 (151, 'S7', 1, 130000),
 (152, 'S1', 1, 150000),
 (152, 'S2', 1, 250000),
-(152, 'S3', 3, 200000);
+(152, 'S3', 3, 200000),
+(154, 'S12', 1, 140000),
+(156, 'S3', 9, 200000);
 
 -- --------------------------------------------------------
 
@@ -236,20 +226,13 @@ INSERT INTO `ctquyen` (`manhomquyen`, `machucnang`, `hanhdong`) VALUES
 (2, 5, 'CRUD'),
 (2, 6, 'CRUD'),
 (2, 9, 'CRUD'),
-(2, 10, 'CRUD');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `ctsach`
---
-
-CREATE TABLE `ctsach` (
-  `masach` int(11) NOT NULL,
-  `maphieunhap` int(11) NOT NULL,
-  `maphieuxuat` int(11) DEFAULT NULL,
-  `tinhtrang` tinyint(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(2, 10, 'CRUD'),
+(3, 2, 'ALL'),
+(3, 3, 'ALL'),
+(3, 4, 'ALL'),
+(3, 5, 'ALL'),
+(3, 6, 'ALL'),
+(3, 9, 'ALL');
 
 -- --------------------------------------------------------
 
@@ -336,10 +319,10 @@ CREATE TABLE `khuyenmai` (
 --
 
 INSERT INTO `khuyenmai` (`makm`, `tenkm`, `ngaybatdau`, `ngayketthuc`, `dieukientoithieu`, `phantramgiam`) VALUES
-(3, 'Khuyến mãi đầu năm', '2025-04-19 00:00:00', '2025-04-21 00:00:00', 500000, 10),
-(4, 'sale đầu năm', '2025-04-22 00:00:00', '2025-04-22 00:00:00', 500000, 10),
-(5, 'sale 2', '2025-04-21 00:00:00', '2025-04-23 00:00:00', 500000, 10),
-(6, 'Sucvat', '2025-04-25 00:00:00', '2025-04-29 00:00:00', 100000, 10);
+(12, 's2', '2025-04-16 00:00:00', '2025-05-01 00:00:00', 500000, 13),
+(14, 'S1', '2025-05-01 00:00:00', '2025-05-01 00:00:00', 100000, 12),
+(15, '1', '2025-05-01 00:00:00', '2025-05-01 00:00:00', 1, 1),
+(16, 'Khuyến mãi đầu năm', '2025-05-01 00:00:00', '2025-05-01 00:00:00', 500000, 20);
 
 -- --------------------------------------------------------
 
@@ -440,7 +423,8 @@ CREATE TABLE `nhomquyen` (
 
 INSERT INTO `nhomquyen` (`manhomquyen`, `tennhomquyen`, `trangthai`) VALUES
 (1, 'Quản lý', 1),
-(2, 'Nhân viên', 1);
+(2, 'Nhân viên', 1),
+(3, 'Quản lý kho', 1);
 
 -- --------------------------------------------------------
 
@@ -526,7 +510,9 @@ INSERT INTO `phieuxuat` (`maphieuxuat`, `manv`, `makh`, `thoigiantao`, `tongtien
 (141, 3, 3, '2025-04-22 17:06:42', 190000, 1),
 (150, 6, 7, '2025-04-22 17:35:12', 740000, 1),
 (151, 6, 2, '2025-04-22 17:55:31', 806000, 1),
-(152, 6, 3, '2025-04-28 10:45:26', 1000000, 1);
+(152, 6, 3, '2025-04-28 10:45:26', 1000000, 1),
+(154, 6, 4, '2025-05-01 13:24:12', 140000, 1),
+(156, 6, 2, '2025-05-01 16:32:24', 1440000, 1);
 
 -- --------------------------------------------------------
 
@@ -553,7 +539,7 @@ INSERT INTO `sach` (`masach`, `tensach`, `manxb`, `matacgia`, `matheloai`, `solu
 ('S1', 'Harry Potter và Hòn Đá Phù Thủy', 1, 1, 5, 1000, '1997', 150000),
 ('S10', 'Dune: Hành tinh cát', 1, 10, 2, 93, '1965', 210000),
 ('S11', '1984', 2, 11, 2, 424, '1949	', 150000),
-('S12', 'Frankenstein', 2, 12, 2, 68, '1818', 140000),
+('S12', 'Frankenstein', 2, 12, 2, 67, '1818', 140000),
 ('S13', 'Trò chơi vương quyền', 2, 13, 5, 60, '1996', 190000),
 ('S14', 'Cô gái có hình xăm rồng', 2, 14, 4, 60, '2005', 160000),
 ('S15', 'Sherlock Holmes: Tên sát nhân vùng mỏ', 2, 15, 4, 52, '1893', 130000),
@@ -571,7 +557,7 @@ INSERT INTO `sach` (`masach`, `tensach`, `manxb`, `matacgia`, `matheloai`, `solu
 ('S26', 'Naruto', 4, 25, 9, 52, '1999', 90000),
 ('S27', 'Giải tích căn bản', 4, 24, 10, 104, '1965', 250000),
 ('S28', 'Cấu trúc dữ liệu và thuật toán', 4, 25, 10, 250, '1990', 270000),
-('S3', 'Những kẻ khốn khổ', 1, 2, 1, 321, '1862', 200000),
+('S3', 'Những kẻ khốn khổ', 1, 2, 1, 312, '1862', 200000),
 ('S30', '1', 1, 1, 1, 1, '11', 11),
 ('S31', '2', 1, 1, 1, 2, '22', 22),
 ('S4', 'Bố già', 1, 4, 1, 34, '1969', 160000),
@@ -644,7 +630,7 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`manv`, `tendangnhap`, `matkhau`, `manhomquyen`, `trangthai`) VALUES
-(1, 'trung123', '12345', 2, 1),
+(1, 'trung123', '12345', 3, 1),
 (3, 'thuan123', '12345', 2, 1),
 (4, 'khai123', '12345', 2, 1),
 (5, 'dang123', '12345', 2, 1),
@@ -686,6 +672,12 @@ INSERT INTO `theloai` (`matheloai`, `tentheloai`) VALUES
 --
 ALTER TABLE `ctphieunhap`
   ADD PRIMARY KEY (`maphieunhap`,`masach`);
+
+--
+-- Chỉ mục cho bảng `ctphieutra`
+--
+ALTER TABLE `ctphieutra`
+  ADD PRIMARY KEY (`maphieuxuat`,`masach`);
 
 --
 -- Chỉ mục cho bảng `ctphieuxuat`
@@ -750,6 +742,14 @@ ALTER TABLE `phieunhap`
   ADD KEY `FK_phieunhap_nhacungcap` (`mancc`);
 
 --
+-- Chỉ mục cho bảng `phieutra`
+--
+ALTER TABLE `phieutra`
+  ADD PRIMARY KEY (`phieutra`),
+  ADD KEY `FK_phieutra_nhanvien` (`manv`),
+  ADD KEY `FK_phieutra_khachhang` (`makh`);
+
+--
 -- Chỉ mục cho bảng `phieuxuat`
 --
 ALTER TABLE `phieuxuat`
@@ -761,7 +761,10 @@ ALTER TABLE `phieuxuat`
 -- Chỉ mục cho bảng `sach`
 --
 ALTER TABLE `sach`
-  ADD PRIMARY KEY (`masach`);
+  ADD PRIMARY KEY (`masach`),
+  ADD KEY `FK_sach_nxb` (`manxb`),
+  ADD KEY `FK_sach_tacgia` (`matacgia`),
+  ADD KEY `FK_sach_theloai` (`matheloai`);
 
 --
 -- Chỉ mục cho bảng `tacgia`
@@ -802,7 +805,7 @@ ALTER TABLE `khachhang`
 -- AUTO_INCREMENT cho bảng `khuyenmai`
 --
 ALTER TABLE `khuyenmai`
-  MODIFY `makm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `makm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `nhacungcap`
@@ -826,7 +829,7 @@ ALTER TABLE `nhaxuatban`
 -- AUTO_INCREMENT cho bảng `nhomquyen`
 --
 ALTER TABLE `nhomquyen`
-  MODIFY `manhomquyen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `manhomquyen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `phieunhap`
@@ -838,7 +841,7 @@ ALTER TABLE `phieunhap`
 -- AUTO_INCREMENT cho bảng `phieuxuat`
 --
 ALTER TABLE `phieuxuat`
-  MODIFY `maphieuxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `maphieuxuat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT cho bảng `tacgia`
@@ -864,11 +867,26 @@ ALTER TABLE `phieunhap`
   ADD CONSTRAINT `FK_phieunhap_taikhoan` FOREIGN KEY (`manv`) REFERENCES `taikhoan` (`manv`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Các ràng buộc cho bảng `phieutra`
+--
+ALTER TABLE `phieutra`
+  ADD CONSTRAINT `FK_phieutra_khachhang` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`),
+  ADD CONSTRAINT `FK_phieutra_nhanvien` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`);
+
+--
 -- Các ràng buộc cho bảng `phieuxuat`
 --
 ALTER TABLE `phieuxuat`
   ADD CONSTRAINT `FK_phieuxuat_khachhang` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_phieuxuat_taikhoan` FOREIGN KEY (`manv`) REFERENCES `taikhoan` (`manv`);
+
+--
+-- Các ràng buộc cho bảng `sach`
+--
+ALTER TABLE `sach`
+  ADD CONSTRAINT `FK_sach_nxb` FOREIGN KEY (`manxb`) REFERENCES `nhaxuatban` (`manxb`),
+  ADD CONSTRAINT `FK_sach_tacgia` FOREIGN KEY (`matacgia`) REFERENCES `tacgia` (`matacgia`),
+  ADD CONSTRAINT `FK_sach_theloai` FOREIGN KEY (`matheloai`) REFERENCES `theloai` (`matheloai`);
 
 --
 -- Các ràng buộc cho bảng `taikhoan`
